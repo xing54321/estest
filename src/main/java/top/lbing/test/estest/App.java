@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import top.lbing.test.estest.utils.ESClient;
-import top.lbing.test.estest.utils.ElasticSearchBulkOperator;
+import top.lbing.test.estest.utils.transport.ESClient;
+import top.lbing.test.estest.utils.transport.ElasticSearchBulkOperator;
 
 public class App {
 	public static void main(String[] args) {
