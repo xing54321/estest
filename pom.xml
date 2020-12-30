@@ -22,7 +22,7 @@
 			<artifactId>transport</artifactId>
 			<version>${elastisearch.version}</version>
 		</dependency>
-		<dependency>
+		<dependency> 
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
 			<version>${elastisearch.version}</version>

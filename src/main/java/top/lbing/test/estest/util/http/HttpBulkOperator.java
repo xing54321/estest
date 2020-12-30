@@ -1,4 +1,4 @@
-package top.lbing.test.estest.utils;
+package top.lbing.test.estest.util.http;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,14 +14,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * Created on 2019/1/11.
- *
- * @author 迹_Jason
- */
-public class ElasticSearchBulkOperator {
+public class HttpBulkOperator {
 
-    private static final Log LOG = LogFactory.getLog(ElasticSearchBulkOperator.class);
+    private static final Log LOG = LogFactory.getLog(HttpBulkOperator.class);
 
     private static final int MAX_BULK_COUNT = 10000;
 
@@ -32,7 +27,7 @@ public class ElasticSearchBulkOperator {
     private static ScheduledExecutorService scheduledExecutorService = null;
     static {
         // init es bulkRequestBuilder
-        bulkRequestBuilder = ESClient.client.prepareBulk();
+        bulkRequestBuilder = TcpESClient.client.prepareBulk();
         bulkRequestBuilder.setRefreshPolicy(WriteRequest.RefreshPolicy.IMMEDIATE);
 
         // init thread pool and set size 1
@@ -65,7 +60,7 @@ public class ElasticSearchBulkOperator {
         if (bulkRequestBuilder.numberOfActions() > threshold) {
             BulkResponse bulkItemResponse = bulkRequestBuilder.execute().actionGet();
             if (!bulkItemResponse.hasFailures()) {
-                bulkRequestBuilder = ESClient.client.prepareBulk();
+                bulkRequestBuilder = TcpESClient.client.prepareBulk();
             }
         }
     }
